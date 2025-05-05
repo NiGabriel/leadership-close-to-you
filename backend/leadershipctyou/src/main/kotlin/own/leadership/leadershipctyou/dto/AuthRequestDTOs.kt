@@ -18,5 +18,6 @@ data class LoginRequest(
 
 data class AuthResponse(
     val token: String,
+    val name : String,
     val role: String
 )

@@ -14,6 +14,7 @@ import own.leadership.leadershipctyou.service.TwilioService
 
 @RestController
 @RequestMapping("/api/announcements")
+@CrossOrigin(origins = ["*"])
 class AnnouncementController(
     private val announcementRepository: AnnouncementRepository,
     private val leaderRepository: LeaderRepository,
@@ -25,6 +26,12 @@ class AnnouncementController(
 
     @GetMapping
     fun getAll(): List<Announcement> = announcementRepository.findAll()
+
+    @GetMapping("/recent")
+    fun getRecentAnnouncements(): List<Announcement> {
+        return announcementRepository.findTop5ByOrderByCreatedAtDesc()
+    }
+
 
     @PostMapping
     fun create(@RequestBody dto: AnnouncementRequestDTO): Announcement {

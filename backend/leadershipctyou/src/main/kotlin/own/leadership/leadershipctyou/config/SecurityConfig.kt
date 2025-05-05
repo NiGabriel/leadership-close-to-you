@@ -28,6 +28,7 @@ class SecurityConfig {
     ): SecurityFilterChain {
         return http
             .csrf { it.disable() }
+            .cors(Customizer.withDefaults())
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/api/auth/**").permitAll()

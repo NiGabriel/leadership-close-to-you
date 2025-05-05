@@ -6,6 +6,7 @@ import own.leadership.leadershipctyou.repository.LocationRepository
 
 @RestController
 @RequestMapping("/api/locations")
+@CrossOrigin(origins = ["*"])
 class LocationController(
     private val locationRepository: LocationRepository
 ) {

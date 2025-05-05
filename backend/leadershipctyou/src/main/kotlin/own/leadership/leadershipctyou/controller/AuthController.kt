@@ -11,6 +11,7 @@ import own.leadership.leadershipctyou.utils.JwtUtil
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = ["*"])
 class AuthController(
     private val userRepository: UserRepository,
     private val locationRepository: LocationRepository,
@@ -36,6 +37,7 @@ class AuthController(
         return userRepository.save(user)
     }
 
+
     @PostMapping("/login")
     fun login(@RequestBody req: LoginRequest): AuthResponse {
         val auth = UsernamePasswordAuthenticationToken(req.phoneNumber, req.password)
@@ -44,6 +46,6 @@ class AuthController(
         val user = userRepository.findByPhoneNumber(req.phoneNumber)!!
         val token = jwtUtil.generateToken(user.phoneNumber, user.role.name)
 
-        return AuthResponse(token, user.role.name)
+        return AuthResponse(token, user.name, user.role.name)
     }
 }

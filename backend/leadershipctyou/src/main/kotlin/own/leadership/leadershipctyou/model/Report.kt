@@ -27,7 +27,11 @@ data class Report(
     var status: ReportStatus = ReportStatus.SUBMITTED,
 
     val createdAt: Date = Date(),
-    var resolvedAt: Date? = null
+    var resolvedAt: Date? = null,
+
+    @Column(name = "response_time_hours")
+    var responseTimeHours: Double? = null
+
 )
 
 enum class ReportStatus {

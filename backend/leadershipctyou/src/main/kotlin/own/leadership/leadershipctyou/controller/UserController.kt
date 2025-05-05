@@ -9,6 +9,7 @@ import own.leadership.leadershipctyou.repository.UserRepository
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = ["*"])
 class UserController(
     private val userRepository: UserRepository
 ) {
